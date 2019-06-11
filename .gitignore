@@ -1,0 +1,13 @@
+*.[ao]
+*~
+*.swp
+.DS_Store
+logs/*
+*.zip
+.idea*
+[cC]make*
+
+## To be Uncommented for 42 -> down
+#todo/*
+#*.todo
+#res/*
