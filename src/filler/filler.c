@@ -15,6 +15,6 @@
 
 int		main(void)
 {
-	ft_printf("Hello Filler !\n");
+	fi_game_run();
 	return (0);
 }
