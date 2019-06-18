@@ -20,7 +20,10 @@ C_END = \033[0m
 
 FILLER := filler.c fi_game.c fi_player.c
 
-SRC_FILES := $(addprefix filler/,  $(FILLER))
+UTILS := ut_mtx.c
+
+SRC_FILES := $(addprefix filler/,  $(FILLER)) \
+    $(addprefix utils/,  $(UTILS))
 
 SRC_DIR := ./src/
 SRC := $(addprefix $(SRC_DIR), $(SRC_FILES))
