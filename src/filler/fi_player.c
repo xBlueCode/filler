@@ -23,5 +23,6 @@ int				fi_read_player(t_game *game)
 	game->me.name = ft_strndup(line + FI_IN_PL_OFF_N,
 		ft_strlen(line + FI_IN_PL_OFF_N) - 1);
 	FT_MEMDEL(line);
+	ft_printf("Player Added !\n");
 	return (OK);
 }
