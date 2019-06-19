@@ -11,7 +11,8 @@ int		fi_game_run(void)
 
 	if (fi_game_init(&game) == KO)
 		return (KO);
-	ft_printf("Player: %s\n", game.me.name);
+	//ft_printf("Player: %s\n", game.me.name);
+	FT_LOG(FT_LOG_LINF, FT_LOG_FMESS, "Player: %s", game.me.name);
 	if (fi_game_play(&game) == KO)
 		return (KO);
 	return (OK);
@@ -36,15 +37,23 @@ int		fi_game_play(t_game *game)
 	{
 		if (fi_read_map(game) == KO)
 			break;
-		ft_arr_print((char**)game->map, game->mnl);
-		/*
 		if (fi_read_piece(game) == KO)
 			break;
+		FT_LOG(FT_LOG_LINF, FT_LOG_FMESS, "Map: %d %d", game->mnl, game->mnc);
+		FT_LOG(FT_LOG_LINF, FT_LOG_FMESS, "Piece: %d %d", game->pnl, game->pnc);
+		/*
 		if (fi_solve(game) == KO)
 			break;
-		fi_print_lastmove(game);
 		 */
-		//fi_game_clean(game);
+		fi_print_lastmove(game);
+		fi_game_clean(game);
 	}
 	return (OK);
+}
+
+int 	fi_game_clean(t_game *game)
+{
+	ft_arr_free((void***)&(game->map), game->mnl);
+	ft_arr_free((void***)&(game->piece), game->pnl);
+	game->lastmove = (t_cell){.x = -1, .y = -1, z = -1};
 }

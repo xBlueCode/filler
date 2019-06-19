@@ -15,6 +15,8 @@
 
 int		main(void)
 {
+	ft_log_open(LOG_DIR, "filler");
 	fi_game_run();
+	ft_log_close();
 	return (0);
 }

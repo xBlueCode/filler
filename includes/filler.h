@@ -15,6 +15,8 @@
 
 #include "utils.h"
 
+# define LOG_DIR "logs"
+
 # define FI_IN_PL_HEAD "$$$ exec p"
 # define FI_IN_PL_HEAD_LEN 10
 
