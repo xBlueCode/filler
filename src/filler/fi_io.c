@@ -59,7 +59,7 @@ int 			fi_read_piece(t_game *game)
 	game->pnl = ft_atoi(line + 6);
 	game->pnc = ft_atoi(ft_strchr(line + 6, ' '));
 	FT_MEMDEL(line);
-	if (!(game->map = ut_read_mtx(0, game->pnl, game->pnc, 0)))
+	if (!(game->piece = ut_read_mtx(0, game->pnl, game->pnc, 0)))
 		return (KO);
 	return (OK);
 }

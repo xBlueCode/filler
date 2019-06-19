@@ -20,7 +20,6 @@ int		fi_game_run(void)
 
 int 	fi_game_init(t_game *game)
 {
-	(void)game;
 	if (fi_read_player(game) == KO)
 		return (KO);
 	return (OK);
@@ -30,7 +29,7 @@ int		fi_game_play(t_game *game)
 {
 	//t_cell	sol;
 
-	ft_printf("play\n");
+	//ft_printf("play\n");
 	if (!game)
 		return (KO);
 	while (1)
@@ -41,12 +40,14 @@ int		fi_game_play(t_game *game)
 			break;
 		FT_LOG(FT_LOG_LINF, FT_LOG_FMESS, "Map: %d %d", game->mnl, game->mnc);
 		FT_LOG(FT_LOG_LINF, FT_LOG_FMESS, "Piece: %d %d", game->pnl, game->pnc);
+		fi_map_update(game);
 		/*
 		if (fi_solve(game) == KO)
 			break;
 		 */
-		fi_print_lastmove(game);
-		fi_game_clean(game);
+		//fi_print_lastmove(game);
+		//ft_dprintf(0, "0 0\n");
+		//fi_game_clean(game);
 	}
 	return (OK);
 }
@@ -55,5 +56,6 @@ int 	fi_game_clean(t_game *game)
 {
 	ft_arr_free((void***)&(game->map), game->mnl);
 	ft_arr_free((void***)&(game->piece), game->pnl);
-	game->lastmove = (t_cell){.x = -1, .y = -1, z = -1};
+	game->lastmove = (t_cell){.x = -1, .y = -1, .v = -1};
+	return (OK);
 }
