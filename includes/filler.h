@@ -62,6 +62,11 @@ int 			fi_read_piece(t_game *game);
 
 int 			fi_solve(t_game *game);
 
+
+int 			fi_map_update(t_game *game);
+int 			fi_map_numerize(t_game *game);
+int 			fi_map_adjacent(t_game *game, int i, int j, int c);
+
 int 			fi_print_lastmove(t_game *game);
 
 #endif
