@@ -12,7 +12,7 @@ int 	**ut_read_mtx(int fd, int nl, int nc, int off)
 
 	if (fd < 0 || nl <= 0 || nc <= 0)
 		return (NULL);
-	mtx = ft_memalloc(nl * sizeof(int*));
+	mtx = ft_memalloc((nl + 1) * sizeof(int*));
 	i = -1;
 	while (++i < nl && get_next_line(fd, &line) > -1)
 	{
@@ -24,5 +24,6 @@ int 	**ut_read_mtx(int fd, int nl, int nc, int off)
 		mtx[i] = (int*)ft_strndup(line + off, nc);
 		FT_MEMDEL(line);
 	}
+	mtx[i] = NULL;
 	return (mtx);
 }
