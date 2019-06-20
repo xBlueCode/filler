@@ -38,13 +38,9 @@ int		fi_game_play(t_game *game)
 			break;
 		if (fi_read_piece(game) == KO)
 			break;
-		FT_LOG(FT_LOG_LINF, FT_LOG_FMESS, "Map: %d %d", game->mnl, game->mnc);
-		FT_LOG(FT_LOG_LINF, FT_LOG_FMESS, "Piece: %d %d", game->pnl, game->pnc);
-		fi_map_update(game);
-		/*
+		//fi_map_update(game);
 		if (fi_solve(game) == KO)
 			break;
-		 */
 		//fi_print_lastmove(game);
 		//ft_dprintf(0, "0 0\n");
 		//fi_game_clean(game);

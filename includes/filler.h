@@ -48,6 +48,8 @@ typedef	struct	s_game
 	int 		**piece;
 	int			pnl;
 	int 		pnc;
+	t_cell		mezone_lt;
+	t_cell		mezone_rb;
 	t_cell		lastmove;
 }				t_game;
 
@@ -68,6 +70,12 @@ int 			fi_map_numerize(t_game *game);
 int 			fi_map_surround(t_game *game);
 int 			fi_map_calcdist(t_game *game);
 int 			fi_map_adjacent(t_game *game, int i, int j, int c);
+
+int 			fi_zone_scan(t_game *game, t_player player);
+int 			fi_zone_scan_ltx(t_game *game, t_player player);
+int 			fi_zone_scan_lty(t_game *game, t_player player);
+int 			fi_zone_scan_rbx(t_game *game, t_player player);
+int 			fi_zone_scan_rby(t_game *game, t_player player);
 
 int 			fi_print_lastmove(t_game *game);
 
