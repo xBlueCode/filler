@@ -11,5 +11,7 @@ int 			fi_solve(t_game *game)
 		return (KO);
 	if (fi_zone_scan(game, game->me) == KO)
 		return (KO);
+	if (fi_place(game) == KO)
+		return (KO);
 	return (OK);
 }

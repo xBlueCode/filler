@@ -8,12 +8,12 @@
 int		fi_map_update(t_game *game)
 {
 	FT_LOG_FUNC;
-	ut_log_mtx_ch(game->map, game->mnl, game->mnc);
+	//ut_log_mtx_ch(game->map, game->mnl, game->mnc);
 	if (fi_map_numerize(game) == KO)
 		return (KO);
-	ut_log_mtx_int(game->map, game->mnl, game->mnc);
+	//ut_log_mtx_int(game->map, game->mnl, game->mnc);
 	fi_map_surround(game);
-	ut_log_mtx_int(game->map, game->mnl, game->mnc);
+	//ut_log_mtx_int(game->map, game->mnl, game->mnc);
 	fi_map_calcdist(game);
 	ut_log_mtx_int(game->map, game->mnl, game->mnc);
 	return (OK);

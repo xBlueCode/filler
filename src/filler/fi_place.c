@@ -18,6 +18,8 @@ int 	fi_place(t_game *game)
 		while (++j <= game->mezone_rb.x)
 			fi_place_update(game, i, j, fi_place_at(game, i, j));
 	}
+	if (game->lastmove.v < 0)
+		return (KO);
 	return (OK);
 }
 
