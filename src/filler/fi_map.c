@@ -41,8 +41,6 @@ int		fi_map_numerize(t_game *game)
 			else
 				return (KO);
 	}
-	game->me.ch = -game->me.id;
-	game->en.ch = -game->en.id;
 	return (OK);
 }
 
@@ -59,7 +57,7 @@ int 	fi_map_surround(t_game *game)
 	{
 		j = -1;
 		while (++j < game->mnc)
-			if (!map[i][j] && fi_map_adjacent(game, i, j, game->en.ch))
+			if (!map[i][j] && fi_map_adjacent(game, i, j, -game->en.id))
 				map[i][j] = 1;
 	}
 	return (OK);
