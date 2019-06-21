@@ -12,13 +12,10 @@ int		fi_zone_scan(t_game *game, t_player player)
 		|| fi_zone_scan_rbx(game, player) == KO
 		|| fi_zone_scan_rby(game, player) == KO)
 		return (KO);
-	game->mezone_lt.x += -game->pnc;
+	game->mezone_lt.x += -game->pnc + 1;
 	game->mezone_lt.x = game->mezone_lt.x < 0 ? 0 : game->mezone_lt.x;
-	game->mezone_lt.y += -game->pnl;
+	game->mezone_lt.y += -game->pnl + 1;
 	game->mezone_lt.y = game->mezone_lt.y < 0 ? 0 : game->mezone_lt.y;
-
-	game->mezone_rb.x++;
-	game->mezone_rb.y++;
 	game->mezone_rb.x = game->mezone_rb.x + game->pnc >= game->mnc ?
 		game->mnc - game->pnc : game->mezone_rb.x;
 	game->mezone_rb.y = game->mezone_rb.y + game->pnl >= game->mnl ?

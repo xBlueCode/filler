@@ -12,7 +12,7 @@ int		fi_game_run(void)
 	if (fi_game_init(&game) == KO)
 		return (KO);
 	//ft_printf("Player: %s\n", game.me.name);
-	FT_LOG(FT_LOG_LINF, FT_LOG_FMESS, "Player: %s", game.me.name);
+	FT_LOG(FT_LOG_LINF, FT_LOG_FMESS, "Player: %s\n", game.me.name);
 	if (fi_game_play(&game) == KO)
 		return (KO);
 	return (OK);
@@ -29,7 +29,6 @@ int		fi_game_play(t_game *game)
 {
 	//t_cell	sol;
 
-	//ft_printf("play\n");
 	if (!game)
 		return (KO);
 	while (1)
@@ -38,12 +37,13 @@ int		fi_game_play(t_game *game)
 			break;
 		if (fi_read_piece(game) == KO)
 			break;
+		ut_log_mtx_ch(game->piece, game->pnl, game->pnc);
 		//fi_map_update(game);
 		if (fi_solve(game) == KO)
 			break;
-		//fi_print_lastmove(game);
+		fi_print_lastmove(game);
 		//ft_dprintf(0, "0 0\n");
-		//fi_game_clean(game);
+		fi_game_clean(game);
 	}
 	return (OK);
 }
