@@ -17,10 +17,10 @@ int		fi_zone_scan(t_game *game, t_player player)
 	game->mezone_lt.y += -game->pnl + 1;
 	game->mezone_lt.y = game->mezone_lt.y < 0 ? 0 : game->mezone_lt.y;
 	game->mezone_rb.x = game->mezone_rb.x + game->pnc >= game->mnc ?
-		game->mnc - game->pnc : game->mezone_rb.x;
+		game->mnc - game->pnc - 1 : game->mezone_rb.x;
 	game->mezone_rb.y = game->mezone_rb.y + game->pnl >= game->mnl ?
-						game->mnc - game->pnl : game->mezone_rb.y;
-	FT_LOG(FT_LOG_LDEB, FT_LOG_FMESS, "Zone: LT[%d , %d]  RB[%d, %d]",
+						game->mnl - game->pnl : game->mezone_rb.y;
+	FT_LOG(FT_LOG_LDEB, FT_LOG_FMESS, "Zone: LT[%d , %d]  RB[%d, %d]\n",
 		game->mezone_lt.y, game->mezone_lt.x, game->mezone_rb.y, game->mezone_rb.x)
 	return (OK);
 }
@@ -34,7 +34,7 @@ int		fi_zone_scan_lty(t_game *game, t_player player)
 	while (++i < game->mnl) {
 		j = -1;
 		while (++j < game->mnc)
-			if (game->map[i][j] == player.ch)
+			if (game->map[i][j] == -player.id)
 			{
 				game->mezone_lt.y = i;
 				return (OK);
@@ -53,7 +53,7 @@ int		fi_zone_scan_ltx(t_game *game, t_player player)
 	{
 		i = -1;
 		while (++i < game->mnl)
-			if (game->map[i][j] == player.ch)
+			if (game->map[i][j] == -player.id)
 			{
 				game->mezone_lt.x = j;
 				return (OK);
@@ -70,7 +70,7 @@ int		fi_zone_scan_rby(t_game *game, t_player player) {
 	while (--i > -1) {
 		j = -1;
 		while (++j < game->mnc)
-			if (game->map[i][j] == player.ch) {
+			if (game->map[i][j] == -player.id) {
 				game->mezone_rb.y = i;
 				return (OK);
 			}
@@ -88,7 +88,7 @@ int		fi_zone_scan_rbx(t_game *game, t_player player)
 	{
 		i = -1;
 		while (++i < game->mnl)
-			if (game->map[i][j] == player.ch)
+			if (game->map[i][j] == -player.id)
 			{
 				game->mezone_rb.x = j;
 				return (OK);
