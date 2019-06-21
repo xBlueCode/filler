@@ -23,7 +23,6 @@ int				fi_read_player(t_game *game)
 	game->me.name = ft_strndup(line + FI_IN_PL_OFF_N,
 							   ft_strlen(line + FI_IN_PL_OFF_N) - 1);
 	FT_MEMDEL(line);
-	ft_printf("Player Added !\n");
 	return (OK);
 }
 
@@ -62,10 +61,4 @@ int 			fi_read_piece(t_game *game)
 	if (!(game->piece = ut_read_mtx(0, game->pnl, game->pnc, 0)))
 		return (KO);
 	return (OK);
-}
-
-int 			fi_print_lastmove(t_game *game)
-{
-	ft_dprintf(0, "%d %d\n", game->lastmove.y, game->lastmove.x);
-	return (0);
 }

@@ -77,8 +77,6 @@ int 			fi_zone_scan_lty(t_game *game, t_player player);
 int 			fi_zone_scan_rbx(t_game *game, t_player player);
 int 			fi_zone_scan_rby(t_game *game, t_player player);
 
-int 			fi_print_lastmove(t_game *game);
-
 
 int 			fi_place(t_game *game);
 int 			fi_place_at(t_game *game, int i, int j);
