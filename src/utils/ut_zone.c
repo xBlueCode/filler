@@ -17,7 +17,6 @@ int		ut_mtx_scan_zone(int **mtx, t_cell meta, t_cell *lt, t_cell *rb)
 	return (OK);
 }
 
-
 int		ut_mtx_scan_zone_lty(int **mtx, t_cell meta, t_cell *lt)
 {
 	int i;

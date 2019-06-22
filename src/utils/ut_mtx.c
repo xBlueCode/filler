@@ -65,3 +65,8 @@ int 	**ut_log_mtx_ch(int **mtx, int nl, int nc)
 	}
 	return (OK);
 }
+
+int 	ut_vec_normsquare(t_cell c1, t_cell c2)
+{
+	return (ft_pow(c2.x - c1.x, 2) + ft_pow(c2.y - c1.y, 2));
+}

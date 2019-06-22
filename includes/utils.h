@@ -9,6 +9,7 @@ int 	**ut_read_mtx(int fd, int nl, int nc, int off);
 int 	**ut_log_mtx_int(int **mtx, int nl, int nc);
 int 	**ut_log_mtx_ch(int **mtx, int nl, int nc);
 
+int 	ut_vec_normsquare(t_cell c1, t_cell c2);
 
 int		ut_mtx_scan_zone(int **mtx, t_cell meta, t_cell *lt, t_cell *rb);
 int		ut_mtx_scan_zone_lty(int **mtx, t_cell meta, t_cell *lt);

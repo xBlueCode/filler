@@ -50,6 +50,10 @@ typedef	struct	s_game
 	int 		pnc;
 	t_cell		mezone_lt;
 	t_cell		mezone_rb;
+	t_cell		enarea_lt;
+	t_cell		enarea_rb;
+	t_cell		parea_lt;
+	t_cell		parea_rb;
 	t_cell		lastmove;
 }				t_game;
 
@@ -81,5 +85,6 @@ int 			fi_place(t_game *game);
 int 			fi_place_mezone(t_game *game);
 int 			fi_place_at(t_game *game, int i, int j);
 int 			fi_place_update(t_game *game, int i, int j, int score);
+int 			fi_place_distdiff(t_game *game, t_cell c1, t_cell c2);
 
 #endif

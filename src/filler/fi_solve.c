@@ -11,6 +11,13 @@ int 			fi_solve(t_game *game)
 		return (KO);
 	if (fi_place_mezone(game) == KO)
 		return (KO);
+	if (ut_mtx_scan_zone(game->map,
+		(t_cell){.y = game->mnl, .x = game->mnc, .v = -game->en.id},
+		&(game->enarea_lt), &(game->enarea_rb)) == KO)
+		return (KO);
+	if (ut_mtx_scan_zone(game->piece,
+		(t_cell){.y = game->pnl, .x = game->pnc, .v = (int)'*'},
+		&(game->parea_lt), &(game->parea_rb)) == KO)
 	if (fi_place(game) == KO)
 		return (KO);
 	return (OK);

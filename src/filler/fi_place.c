@@ -61,20 +61,25 @@ int 	fi_place_at(t_game *game, int i, int j)
 
 int 	fi_place_update(t_game *game, int i, int j, int score)
 {
+	t_cell new_move;
+
 	if (score < 0)
 		return (KO);
+	new_move = (t_cell){.y = i, .x = j, .v = score};
 	if (game->lastmove.v < 0)
-		game->lastmove = (t_cell){.y = i, .x = j, .v = score};
+		game->lastmove = new_move;
 	else if (game->lastmove.v > score && score > 0)
-		game->lastmove = (t_cell){.y = i, .x = j, .v = score};
+		game->lastmove = new_move;
+	//else if (score > 0 && 0 > fi_place_distdiff(game, game->lastmove, new_move))
+	//	game->lastmove = new_move;
 	return (OK);
 }
 
 int		fi_place_mezone(t_game *game)
 {
 	if (ut_mtx_scan_zone(game->map,
-						 (t_cell){.y = game->mnl, .x = game->mnc, .v = -game->me.id},
-						 &(game->mezone_lt), &(game->mezone_rb))
+		(t_cell){.y = game->mnl, .x = game->mnc, .v = -game->me.id},
+		&(game->mezone_lt), &(game->mezone_rb))
 		== KO)
 		return (KO);
 	game->mezone_lt.x += -game->pnc + 1;
@@ -88,4 +93,22 @@ int		fi_place_mezone(t_game *game)
 	FT_LOG(FT_LOG_LDEB, FT_LOG_FMESS, "Zone: LT[%d , %d]  RB[%d, %d]\n",
 		   game->mezone_lt.y, game->mezone_lt.x, game->mezone_rb.y, game->mezone_rb.x)
 	return (OK);
+}
+
+int 	fi_place_distdiff(t_game *game, t_cell c1, t_cell c2)
+{
+	t_cell mid1;
+	t_cell mid2;
+	t_cell miden;
+
+	mid1 = ft_cell_mid(
+		(t_cell){.x = c1.x + game->parea_lt.x, .y = c1.y + game->parea_lt.y, .v = 0},
+		(t_cell){.x = c1.x + game->parea_rb.x, .y = c1.y + game->parea_rb.y, .v = 0}
+		);
+	mid2 = ft_cell_mid(
+		(t_cell){.x = c2.x + game->parea_lt.x, .y = c2.y + game->parea_lt.y, .v = 0},
+		(t_cell){.x = c2.x + game->parea_rb.x, .y = c2.y + game->parea_rb.y, .v = 0}
+		);
+	miden = ft_cell_mid(game->enarea_lt, game->enarea_rb);
+	return (ut_vec_normsquare(mid2, miden) - ut_vec_normsquare(mid1, miden));
 }
