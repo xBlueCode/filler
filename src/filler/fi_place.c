@@ -69,3 +69,23 @@ int 	fi_place_update(t_game *game, int i, int j, int score)
 		game->lastmove = (t_cell){.y = i, .x = j, .v = score};
 	return (OK);
 }
+
+int		fi_place_mezone(t_game *game)
+{
+	if (ut_mtx_scan_zone(game->map,
+						 (t_cell){.y = game->mnl, .x = game->mnc, .v = -game->me.id},
+						 &(game->mezone_lt), &(game->mezone_rb))
+		== KO)
+		return (KO);
+	game->mezone_lt.x += -game->pnc + 1;
+	game->mezone_lt.x = game->mezone_lt.x < 0 ? 0 : game->mezone_lt.x;
+	game->mezone_lt.y += -game->pnl + 1;
+	game->mezone_lt.y = game->mezone_lt.y < 0 ? 0 : game->mezone_lt.y;
+	game->mezone_rb.x = game->mezone_rb.x + game->pnc >= game->mnc ?
+						game->mnc - game->pnc - 1 : game->mezone_rb.x;
+	game->mezone_rb.y = game->mezone_rb.y + game->pnl >= game->mnl ?
+						game->mnl - game->pnl : game->mezone_rb.y;
+	FT_LOG(FT_LOG_LDEB, FT_LOG_FMESS, "Zone: LT[%d , %d]  RB[%d, %d]\n",
+		   game->mezone_lt.y, game->mezone_lt.x, game->mezone_rb.y, game->mezone_rb.x)
+	return (OK);
+}
