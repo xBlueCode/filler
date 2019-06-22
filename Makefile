@@ -19,9 +19,9 @@ C_LMGN = \033[95m
 C_END = \033[0m
 
 FILLER := filler.c fi_io.c fi_game.c fi_player.c fi_map.c fi_solve.c \
-    fi_zone.c fi_place.c
+    fi_place.c
 
-UTILS := ut_mtx.c
+UTILS := ut_mtx.c ut_zone.c
 
 SRC_FILES := $(addprefix filler/,  $(FILLER)) \
     $(addprefix utils/,  $(UTILS))

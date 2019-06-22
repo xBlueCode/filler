@@ -71,7 +71,6 @@ int 			fi_map_surround(t_game *game);
 int 			fi_map_calcdist(t_game *game);
 int 			fi_map_adjacent(t_game *game, int i, int j, int c);
 
-int 			fi_zone_scan(t_game *game, t_player player);
 int 			fi_zone_scan_ltx(t_game *game, t_player player);
 int 			fi_zone_scan_lty(t_game *game, t_player player);
 int 			fi_zone_scan_rbx(t_game *game, t_player player);
@@ -79,6 +78,7 @@ int 			fi_zone_scan_rby(t_game *game, t_player player);
 
 
 int 			fi_place(t_game *game);
+int 			fi_place_mezone(t_game *game);
 int 			fi_place_at(t_game *game, int i, int j);
 int 			fi_place_update(t_game *game, int i, int j, int score);
 
