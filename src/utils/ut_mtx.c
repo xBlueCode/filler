@@ -70,3 +70,30 @@ int 	ut_vec_normsquare(t_cell c1, t_cell c2)
 {
 	return (ft_pow(c2.x - c1.x, 2) + ft_pow(c2.y - c1.y, 2));
 }
+
+t_cell	ut_mtx_center_of_mass(int **mtx, int mnl, int mnc, int c)
+{
+	int i;
+	int j;
+	t_cell com;
+
+	com = (t_cell) {.x = 0, .y = 0, .v = 0};
+	i = -1;
+	while (++i < mnl)
+	{
+		j = -1;
+		while (++j < mnc)
+			if (mtx[i][j] == c)
+			{
+				com.x += j;
+				com.y += i;
+				com.v++;
+			}
+	}
+	if (com.v)
+	{
+		com.x /= com.v;
+		com.y /= com.v;
+	}
+	return (com);
+}

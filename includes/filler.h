@@ -86,5 +86,6 @@ int 			fi_place_mezone(t_game *game);
 int 			fi_place_at(t_game *game, int i, int j);
 int 			fi_place_update(t_game *game, int i, int j, int score);
 int 			fi_place_distdiff(t_game *game, t_cell c1, t_cell c2);
+int 			fi_place_distdiff_tocom(t_game *game, t_cell c1, t_cell c2);
 
 #endif
