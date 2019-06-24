@@ -10,6 +10,8 @@ int 	fi_gui_loop_hook(t_fimlx *fimlx);
 
 int 	fi_gui_init(t_fimlx *fimlx)
 {
+	fimlx->run = 1;
+	fimlx->so = FI_GUI_SEP ? 1 : 0;
 	fimlx->mlx = mlx_init();
 	fimlx->window = mlx_new_window(fimlx->mlx, FI_GUI_WINW, FI_GUI_WINH,
 		"Filler Game !");
@@ -31,10 +33,13 @@ int fi_gui_putsquare(t_fimlx *fimlx, int i, int j)
 		color = fimlx->game.map[i][j] == 'O' || fimlx->game.map[i][j] == 'o' ?
 			0x19b5fe : 0xf5ab35;
 	si = -1;
-	while (++si < fimlx->sy && (sj = -1))
-		while (++sj < fimlx->sx)
+	while ((++si < fimlx->sy - fimlx->so))
+	{
+		sj = -1;
+		while (++sj < fimlx->sx - fimlx->so)
 			fimlx->im.a[(i * fimlx->sy + si) * FI_GUI_WINW + j * fimlx->sx + sj]
 				= color;
+	}
 	return (OK);
 }
 
@@ -46,8 +51,8 @@ int fi_gui_loop_hook(t_fimlx *fimlx)
 
 	if ((ret = fi_read_map(&fimlx->game)) == KO)
 		return (KO);
-	else if (ret == -2)
-		exit(1);
+	else if (ret == -2 && (fimlx->run = -1))
+		exit(0);
 	fimlx->sx = FI_GUI_WINW / fimlx->game.mnc;
 	fimlx->sy = FI_GUI_WINH / fimlx->game.mnl;
 	fimlx->im.ptr = mlx_new_image(fimlx->mlx, FI_GUI_WINW, FI_GUI_WINH);

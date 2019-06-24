@@ -8,6 +8,8 @@
 # define FI_GUI_WINW 800
 # define FI_GUI_WINH 600
 
+# define FI_GUI_SEP 1
+
 #include "filler.h"
 
 typedef struct		s_fiim
@@ -28,6 +30,7 @@ typedef struct		s_fimlx
 	int 		run;
 	int 		sx;
 	int 		sy;
+	int 		so;
 }					t_fimlx;
 
 #endif
