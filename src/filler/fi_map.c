@@ -14,7 +14,8 @@ int		fi_map_update(t_game *game)
 	//ut_log_mtx_int(game->map, game->mnl, game->mnc);
 	fi_map_surround(game);
 	//ut_log_mtx_int(game->map, game->mnl, game->mnc);
-	fi_map_calcdist(game);
+	if (!game->ensurrounded)
+		fi_map_calcdist(game);
 	ut_log_mtx_int(game->map, game->mnl, game->mnc);
 	return (OK);
 }
@@ -53,12 +54,16 @@ int 	fi_map_surround(t_game *game)
 	FT_LOG_FUNC;
 	map = game->map;
 	i = -1;
+	game->ensurrounded = 1;
 	while (++i < game->mnl)
 	{
 		j = -1;
 		while (++j < game->mnc)
 			if (!map[i][j] && fi_map_adjacent(game, i, j, -game->en.id))
+			{
 				map[i][j] = 1;
+				game->ensurrounded = 0;
+			}
 	}
 	return (OK);
 }

@@ -72,12 +72,14 @@ int 	fi_place_update(t_game *game, int i, int j, int score)
 		return (KO);
 	else if (game->lastmove.v > score)
 		game->lastmove = new_move;
-	//else if (score == game->lastmove.v
-	//	&& 0 > fi_place_distdiff(game, game->lastmove, new_move))
-	//	game->lastmove = new_move;
+	else if (score == game->lastmove.v
+		&& 0 > fi_place_distdiff(game, game->lastmove, new_move))
+		game->lastmove = new_move;
+	/*
 	else if (score == game->lastmove.v
 		&& 0 > fi_place_distdiff_tocom(game, game->lastmove, new_move))
 		game->lastmove = new_move;
+	 */
 	return (OK);
 }
 
@@ -93,7 +95,7 @@ int		fi_place_mezone(t_game *game)
 	game->mezone_lt.y += -game->pnl + 1;
 	game->mezone_lt.y = game->mezone_lt.y < 0 ? 0 : game->mezone_lt.y;
 	game->mezone_rb.x = game->mezone_rb.x + game->pnc >= game->mnc ?
-						game->mnc - game->pnc - 1 : game->mezone_rb.x;
+						game->mnc - game->pnc : game->mezone_rb.x;
 	game->mezone_rb.y = game->mezone_rb.y + game->pnl >= game->mnl ?
 						game->mnl - game->pnl : game->mezone_rb.y;
 	FT_LOG(FT_LOG_LDEB, FT_LOG_FMESS, "Zone: LT[%d , %d]  RB[%d, %d]\n",

@@ -48,6 +48,7 @@ typedef	struct	s_game
 	int 		**piece;
 	int			pnl;
 	int 		pnc;
+	int 		ensurrounded;
 	t_cell		mezone_lt;
 	t_cell		mezone_rb;
 	t_cell		enarea_lt;

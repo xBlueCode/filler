@@ -31,10 +31,11 @@ int 			fi_read_map(t_game *game)
 	char 	*line;
 
 	line = NULL;
-	if (get_next_line(0, &line) < 0)
-		return (KO);
+	if (get_next_line(0, &line) < 0 || !line)
+		return (-2);
 	if (ft_strncmp(line, "Plateau ", 8))
-	FT_ERR_RETMSG(KO, "Error : Parser : Expected Token : Plateau !");
+	//FT_ERR_RETMSG(KO, "Error : Parser : Expected Token : Plateau !");
+		return (KO);
 	game->mnl = ft_atoi(line + 8);
 	game->mnc = ft_atoi(ft_strchr(line + 8, ' '));
 	FT_MEMDEL(line);
