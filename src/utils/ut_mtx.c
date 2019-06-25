@@ -1,15 +1,12 @@
-//
-// Created by Abdelfettah BESBES on 2019-06-17.
-//
 
 #include "libft.h"
 
-int 	**ut_read_mtx(int fd, int nl, int nc, int off)
+int		**ut_read_mtx(int fd, int nl, int nc, int off)
 {
 	char	*line;
 	int		**mtx;
 	int		i;
-	int 	j;
+	int		j;
 
 	if (fd < 0 || nl <= 0 || nc <= 0)
 		return (NULL);
@@ -33,7 +30,7 @@ int 	**ut_read_mtx(int fd, int nl, int nc, int off)
 	return (mtx);
 }
 
-int 	**ut_log_mtx_int(int **mtx, int nl, int nc)
+int		ut_log_mtx_int(int **mtx, int nl, int nc)
 {
 	int i;
 	int j;
@@ -50,7 +47,7 @@ int 	**ut_log_mtx_int(int **mtx, int nl, int nc)
 	return (OK);
 }
 
-int 	**ut_log_mtx_ch(int **mtx, int nl, int nc)
+int		ut_log_mtx_ch(int **mtx, int nl, int nc)
 {
 	int i;
 	int j;
@@ -60,22 +57,22 @@ int 	**ut_log_mtx_ch(int **mtx, int nl, int nc)
 	{
 		j = -1;
 		while (++j < nc)
-		FT_LOG(FT_LOG_LINF, FT_LOG_FMESS, " %c ", mtx[i][j]);
+			FT_LOG(FT_LOG_LINF, FT_LOG_FMESS, " %c ", mtx[i][j]);
 		FT_LOG(FT_LOG_LINF, FT_LOG_FMESS, " %c", '\n');
 	}
 	return (OK);
 }
 
-int 	ut_vec_normsquare(t_cell c1, t_cell c2)
+int		ut_vec_normsquare(t_cell c1, t_cell c2)
 {
 	return (ft_pow(c2.x - c1.x, 2) + ft_pow(c2.y - c1.y, 2));
 }
 
 t_cell	ut_mtx_center_of_mass(int **mtx, int mnl, int mnc, int c)
 {
-	int i;
-	int j;
-	t_cell com;
+	int		i;
+	int		j;
+	t_cell	com;
 
 	com = (t_cell) {.x = 0, .y = 0, .v = 0};
 	i = -1;

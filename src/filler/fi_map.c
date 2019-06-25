@@ -1,6 +1,3 @@
-//
-// Created by Abdelfettah BESBES on 2019-06-17.
-//
 
 #include "libft.h"
 #include "filler.h"
@@ -16,7 +13,7 @@ int		fi_map_update(t_game *game)
 	//ut_log_mtx_int(game->map, game->mnl, game->mnc);
 	if (!game->ensurrounded)
 		fi_map_calcdist(game);
-	ut_log_mtx_int(game->map, game->mnl, game->mnc);
+	//ut_log_mtx_int(game->map, game->mnl, game->mnc);
 	return (OK);
 }
 
@@ -45,7 +42,7 @@ int		fi_map_numerize(t_game *game)
 	return (OK);
 }
 
-int 	fi_map_surround(t_game *game)
+int		fi_map_surround(t_game *game)
 {
 	int **map;
 	int i;
@@ -68,7 +65,7 @@ int 	fi_map_surround(t_game *game)
 	return (OK);
 }
 
-int 	fi_map_calcdist(t_game *game)
+int		fi_map_calcdist(t_game *game)
 {
 	int max_dist;
 	int dist;

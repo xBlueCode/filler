@@ -1,14 +1,9 @@
-//
-// Created by Abdelfettah BESBES on 2019-06-24.
-//
 
 #include "libft.h"
 #include "fi_gui.h"
 #include "mlx.h"
 
-int 	fi_gui_loop_hook(t_fimlx *fimlx);
-
-int 	fi_gui_init(t_fimlx *fimlx)
+int		fi_gui_init(t_fimlx *fimlx)
 {
 	fimlx->run = 1;
 	fimlx->so = FI_GUI_SEP ? 1 : 0;
@@ -21,7 +16,7 @@ int 	fi_gui_init(t_fimlx *fimlx)
 	return (OK);
 }
 
-int fi_gui_putsquare(t_fimlx *fimlx, int i, int j)
+int		fi_gui_putsquare(t_fimlx *fimlx, int i, int j)
 {
 	int color;
 	int si;
@@ -37,13 +32,15 @@ int fi_gui_putsquare(t_fimlx *fimlx, int i, int j)
 	{
 		sj = -1;
 		while (++sj < fimlx->sx - fimlx->so)
-			fimlx->im.a[(i * fimlx->sy + si) * FI_GUI_WINW + j * fimlx->sx + sj]
-				= color;
+			fimlx->im.a[
+				(i * fimlx->sy + si) * FI_GUI_WINW
+				+ j * fimlx->sx + sj
+				] = color;
 	}
 	return (OK);
 }
 
-int fi_gui_loop_hook(t_fimlx *fimlx)
+int		fi_gui_loop_hook(t_fimlx *fimlx)
 {
 	int i;
 	int j;
@@ -75,6 +72,5 @@ int		main(void)
 	t_fimlx fimlx;
 
 	fi_gui_init(&fimlx);
-//	fi_gui_display(&fimlx);
 	return (OK);
 }

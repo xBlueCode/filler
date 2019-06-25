@@ -22,8 +22,8 @@ C_LBLU = \033[54m
 C_LMGN = \033[95m
 C_END = \033[0m
 
-FILLER := filler.c fi_io.c fi_game.c fi_player.c fi_map.c fi_solve.c \
-    fi_place.c
+FILLER := filler.c fi_io.c fi_game.c fi_map.c fi_solve.c \
+    fi_place.c fi_place_dist.c
 
 UTILS := ut_mtx.c ut_zone.c
 

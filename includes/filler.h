@@ -13,7 +13,7 @@
 #ifndef FILLER_H
 # define FILLER_H
 
-#include "utils.h"
+# include "utils.h"
 
 # define LOG_DIR "logs"
 
@@ -42,13 +42,13 @@ typedef	struct	s_game
 {
 	t_player	me;
 	t_player	en;
-	int 		**map;
-	int 		mnl;
-	int 		mnc;
-	int 		**piece;
+	int			**map;
+	int			mnl;
+	int			mnc;
+	int			**piece;
 	int			pnl;
-	int 		pnc;
-	int 		ensurrounded;
+	int			pnc;
+	int			ensurrounded;
 	t_cell		mezone_lt;
 	t_cell		mezone_rb;
 	t_cell		enarea_lt;
@@ -56,37 +56,37 @@ typedef	struct	s_game
 	t_cell		parea_lt;
 	t_cell		parea_rb;
 	t_cell		lastmove;
+	int 		lastmove_neighbors;
 }				t_game;
 
-int 			fi_game_run(void);
-int 			fi_game_init(t_game *game);
-int 			fi_game_clean(t_game *game);
-int 			fi_game_play(t_game *game);
+int				fi_game_run(void);
+int				fi_game_init(t_game *game);
+int				fi_game_clean(t_game *game);
+int				fi_game_play(t_game *game);
 
 int				fi_read_player(t_game *game);
-int 			fi_read_map(t_game *game);
-int 			fi_read_piece(t_game *game);
+int				fi_read_map(t_game *game);
+int				fi_read_piece(t_game *game);
 
-int 			fi_solve(t_game *game);
+int				fi_solve(t_game *game);
 
+int				fi_map_update(t_game *game);
+int				fi_map_numerize(t_game *game);
+int				fi_map_surround(t_game *game);
+int				fi_map_calcdist(t_game *game);
+int				fi_map_adjacent(t_game *game, int i, int j, int c);
 
-int 			fi_map_update(t_game *game);
-int 			fi_map_numerize(t_game *game);
-int 			fi_map_surround(t_game *game);
-int 			fi_map_calcdist(t_game *game);
-int 			fi_map_adjacent(t_game *game, int i, int j, int c);
+int				fi_zone_scan_ltx(t_game *game, t_player player);
+int				fi_zone_scan_lty(t_game *game, t_player player);
+int				fi_zone_scan_rbx(t_game *game, t_player player);
+int				fi_zone_scan_rby(t_game *game, t_player player);
 
-int 			fi_zone_scan_ltx(t_game *game, t_player player);
-int 			fi_zone_scan_lty(t_game *game, t_player player);
-int 			fi_zone_scan_rbx(t_game *game, t_player player);
-int 			fi_zone_scan_rby(t_game *game, t_player player);
-
-
-int 			fi_place(t_game *game);
-int 			fi_place_mezone(t_game *game);
-int 			fi_place_at(t_game *game, int i, int j);
-int 			fi_place_update(t_game *game, int i, int j, int score);
-int 			fi_place_distdiff(t_game *game, t_cell c1, t_cell c2);
-int 			fi_place_distdiff_tocom(t_game *game, t_cell c1, t_cell c2);
+int				fi_place(t_game *game);
+int				fi_place_mezone(t_game *game);
+int				fi_place_at(t_game *game, int i, int j);
+int				fi_place_update(t_game *game, int i, int j, int score);
+int				fi_place_distdiff(t_game *game, t_cell c1, t_cell c2);
+int				fi_place_distdiff_tocom(t_game *game, t_cell c1, t_cell c2);
+int				fi_place_enadj(t_game *game, int i, int j);
 
 #endif

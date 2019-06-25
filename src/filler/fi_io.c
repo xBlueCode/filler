@@ -1,11 +1,8 @@
-//
-// Created by Abdelfettah BESBES on 2019-06-19.
-//
 
 #include "libft.h"
 #include "filler.h"
 
-int				fi_read_player(t_game *game)
+int		fi_read_player(t_game *game)
 {
 	char	*line;
 
@@ -16,25 +13,24 @@ int				fi_read_player(t_game *game)
 	if (game->me.id != 1 && game->me.id != 2)
 		FT_ERR_RETMSG(KO, C_RED"ERROR : PARSER : Invalid PLAYER ID"T_END);
 	game->me = game->me.id == 1 ? (t_player){.id = 1, .ch = FI_CE_PL1}
-								: (t_player){.id = 2, .ch = FI_CE_PL2};
+	: (t_player){.id = 2, .ch = FI_CE_PL2};
 	game->en = game->me.id == 1 ?
-			   (t_player){.id = 2, .ch = FI_CE_PL2, .name = NULL}
-								: (t_player){.id = 1, .ch = FI_CE_PL1, .name = NULL};
+		(t_player){.id = 2, .ch = FI_CE_PL2, .name = NULL}
+		: (t_player){.id = 1, .ch = FI_CE_PL1, .name = NULL};
 	game->me.name = ft_strndup(line + FI_IN_PL_OFF_N,
-							   ft_strlen(line + FI_IN_PL_OFF_N) - 1);
+		ft_strlen(line + FI_IN_PL_OFF_N) - 1);
 	FT_MEMDEL(line);
 	return (OK);
 }
 
-int 			fi_read_map(t_game *game)
+int		fi_read_map(t_game *game)
 {
-	char 	*line;
+	char	*line;
 
 	line = NULL;
 	if (get_next_line(0, &line) < 0 || !line)
 		return (-2);
 	if (ft_strncmp(line, "Plateau ", 8))
-	//FT_ERR_RETMSG(KO, "Error : Parser : Expected Token : Plateau !");
 		return (KO);
 	game->mnl = ft_atoi(line + 8);
 	game->mnc = ft_atoi(ft_strchr(line + 8, ' '));
@@ -47,15 +43,15 @@ int 			fi_read_map(t_game *game)
 	return (OK);
 }
 
-int 			fi_read_piece(t_game *game)
+int		fi_read_piece(t_game *game)
 {
-	char 	*line;
+	char	*line;
 
 	line = NULL;
 	if (get_next_line(0, &line) < 0)
 		return (KO);
 	if (ft_strncmp(line, "Piece ", 6))
-	FT_ERR_RETMSG(KO, "Error : Parser : Expected Token : Piece !");
+		FT_ERR_RETMSG(KO, "Error : Parser : Expected Token : Piece !");
 	game->pnl = ft_atoi(line + 6);
 	game->pnc = ft_atoi(ft_strchr(line + 6, ' '));
 	FT_MEMDEL(line);
