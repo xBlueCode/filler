@@ -38,6 +38,7 @@ typedef struct	s_fimlx
 }				t_fimlx;
 
 int				fi_gui_init(t_fimlx *fimlx);
+void			fi_gui_sighand(int sig);
 
 int				fi_gui_loop_hook(t_fimlx *fimlx);
 int 			fi_gui_key_hook(int key, t_fimlx *fimlx);

@@ -14,6 +14,12 @@
 #include "fi_gui.h"
 #include "mlx.h"
 
+void	fi_gui_sighand(int sig)
+{
+	if (sig == SIGINT)
+		exit(OK);
+}
+
 int		fi_gui_loop_hook(t_fimlx *fimlx)
 {
 	int		i;
@@ -47,7 +53,7 @@ int		main(void)
 {
 	t_fimlx fimlx;
 
+	signal(SIGINT, fi_gui_sighand);
 	fi_gui_init(&fimlx);
-	fi_gui_key_hook(KESC, &fimlx);
 	return (OK);
 }
