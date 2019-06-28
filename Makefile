@@ -27,7 +27,7 @@ FILLER := filler.c fi_io.c fi_game.c fi_map.c fi_solve.c \
 
 UTILS := ut_mtx.c ut_zone.c
 
-GUI_FILES := fi_gui.c
+GUI_FILES := fi_gui.c fi_gui_mlx.c
 
 SRC_FILES := $(addprefix filler/,  $(FILLER)) \
     $(addprefix utils/,  $(UTILS))
@@ -89,6 +89,7 @@ $(LIBMLX):
 
 clean:
 	@rm -f $(OBJ) $(GUI_OBJ)
+	@rm -f $(OBJ) $(OBJ)
 	@make clean -C $(LIBFT_DIR)
 	@make clean -C $(LIBMLX_DIR)
 	@echo "$(C_LMGN)➜ [$(NAME)] Objects have been cleaned\

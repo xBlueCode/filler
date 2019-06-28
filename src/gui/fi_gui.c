@@ -1,69 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fi_gui.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abbesbes <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/28 14:52:11 by abbesbes          #+#    #+#             */
+/*   Updated: 2019/06/28 14:52:14 by abbesbes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 #include "fi_gui.h"
 #include "mlx.h"
 
-int		fi_gui_init(t_fimlx *fimlx)
-{
-	fimlx->run = 1;
-	fimlx->so = FI_GUI_SEP ? 1 : 0;
-	fimlx->mlx = mlx_init();
-	fimlx->window = mlx_new_window(fimlx->mlx, FI_GUI_WINW, FI_GUI_WINH,
-		"Filler Game !");
-	fimlx->im.ptr = mlx_new_image(fimlx->mlx, FI_GUI_WINW, FI_GUI_WINH);
-	mlx_loop_hook(fimlx->mlx, &fi_gui_loop_hook, fimlx);
-	mlx_loop(fimlx->mlx);
-	return (OK);
-}
-
-int		fi_gui_putsquare(t_fimlx *fimlx, int i, int j)
-{
-	int color;
-	int si;
-	int sj;
-
-	if (fimlx->game.map[i][j] == '.')
-		color = 0xFFFFFF;
-	else
-		color = fimlx->game.map[i][j] == 'O' || fimlx->game.map[i][j] == 'o' ?
-			0x19b5fe : 0xf5ab35;
-	si = -1;
-	while ((++si < fimlx->sy - fimlx->so))
-	{
-		sj = -1;
-		while (++sj < fimlx->sx - fimlx->so)
-			fimlx->im.a[
-				(i * fimlx->sy + si) * FI_GUI_WINW
-				+ j * fimlx->sx + sj
-				] = color;
-	}
-	return (OK);
-}
-
 int		fi_gui_loop_hook(t_fimlx *fimlx)
 {
-	int i;
-	int j;
-	int ret;
+	int		i;
+	int		j;
+	int		ret;
+	t_cell	b;
 
-	if ((ret = fi_read_map(&fimlx->game)) == KO)
+	if (!fimlx->run || (ret = fi_read_map(&fimlx->game)) == KO)
 		return (KO);
-	else if (ret == -2 && (fimlx->run = -1))
-		exit(0);
+	else if (ret == -2 && !(fimlx->run = 0))
+		return (OK);
 	fimlx->sx = FI_GUI_WINW / fimlx->game.mnc;
 	fimlx->sy = FI_GUI_WINH / fimlx->game.mnl;
-	fimlx->im.ptr = mlx_new_image(fimlx->mlx, FI_GUI_WINW, FI_GUI_WINH);
-	fimlx->im.a = (int*)mlx_get_data_addr(fimlx->im.ptr,
-		&(fimlx->im.bpp), &(fimlx->im.sl), &(fimlx->im.endian));
 	i = -1;
-	while (++i < fimlx->game.mnl)
-	{
-		j = -1;
+	while (++i < fimlx->game.mnl && (j = -1))
 		while (++j < fimlx->game.mnc)
 			fi_gui_putsquare(fimlx, i, j);
-	}
+	b = (t_cell){.y = FI_GUI_WINH, .x =0,
+		.v = (fimlx->sc1 * FI_GUI_WINW) / (fimlx->sc1 + fimlx->sc2)};
+	fi_gui_putrect(fimlx, b, FI_GUI_C1);
+	fi_gui_putrect(fimlx, (t_cell){
+		.x = b.v, .v = FI_GUI_WINW - b.v, .y = b.y}, FI_GUI_C2);
+	fi_gui_putrect(fimlx, (t_cell){
+		.y = FI_GUI_WINH, .x = FI_GUI_WINW / 2, .v = 4}, FI_GUI_CS);
 	mlx_put_image_to_window(fimlx->mlx, fimlx->window, fimlx->im.ptr, 0, 0);
-	mlx_destroy_image(fimlx->mlx, fimlx->im.ptr);
+	ft_arr_free((void***)&(fimlx->game.map), fimlx->game.mnl);
 	return (OK);
 }
 
@@ -72,5 +48,6 @@ int		main(void)
 	t_fimlx fimlx;
 
 	fi_gui_init(&fimlx);
+	fi_gui_key_hook(KESC, &fimlx);
 	return (OK);
 }
