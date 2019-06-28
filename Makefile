@@ -6,7 +6,8 @@ LIBFT_DIR = ./libft/
 LIBMLX_DIR = ./minilibx/
 LIBFT := $(addprefix $(LIBFT_DIR), libft.a)
 LIBMLX := $(addprefix $(LIBMLX_DIR), libmlx.a)
-INC_DIR = $(LIBFT_DIR)includes/ ./includes/ $(LIBMLX_DIR)
+INC_DIR_FI = ./includes/
+INC_DIR = $(INC_DIR_FI) $(LIBFT_DIR)includes/ $(LIBMLX_DIR)
 
 CC = gcc
 CC_FLAGS = -W -Wall -Werror -Wextra
@@ -113,8 +114,9 @@ re: fclean all
 	 Successfully !$(C_END)"
 
 norm:
-	@norminette -R CheckForbiddenSourceHeader $(SRC) $(INC)
-	@norminette -R CheckForbiddenSourceHeader $(GUI_SRC) $(INC)
+	@norminette -R CheckForbiddenSourceHeader $(INC_DIR_FI)
+	@norminette -R CheckForbiddenSourceHeader $(SRC)
+	@norminette -R CheckForbiddenSourceHeader $(GUI_SRC)
 	@make norm -C $(LIBFT_DIR)
 
 quick: clean

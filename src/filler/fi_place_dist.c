@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fi_place_dist.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abbesbes <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/28 15:24:25 by abbesbes          #+#    #+#             */
+/*   Updated: 2019/06/28 15:24:31 by abbesbes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 #include "filler.h"
@@ -36,7 +47,6 @@ int		fi_place_distdiff(t_game *g, t_cell c1, t_cell c2)
 
 int		fi_place_enadj(t_game *game, int i, int j)
 {
-
 	int pi;
 	int pj;
 	int neighbors;

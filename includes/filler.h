@@ -56,7 +56,6 @@ typedef	struct	s_game
 	t_cell		parea_lt;
 	t_cell		parea_rb;
 	t_cell		lastmove;
-	int 		lastmove_neighbors;
 }				t_game;
 
 int				fi_game_run(void);

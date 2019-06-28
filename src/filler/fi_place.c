@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fi_place.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abbesbes <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/28 15:25:10 by abbesbes          #+#    #+#             */
+/*   Updated: 2019/06/28 15:25:12 by abbesbes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 #include "filler.h"
@@ -65,11 +76,6 @@ int		fi_place_update(t_game *game, int i, int j, int score)
 	else if (score == game->lastmove.v
 		&& 0 < fi_place_distdiff(game, game->lastmove, new_move))
 		game->lastmove = new_move;
-	/*
-	else if (score == game->lastmove.v
-		&& 0 < fi_place_distdiff_tocom(game, game->lastmove, new_move))
-		game->lastmove = new_move;
-	 */
 	return (OK);
 }
 

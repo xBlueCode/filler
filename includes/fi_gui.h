@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fi_gui.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abbesbes <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/28 15:34:03 by abbesbes          #+#    #+#             */
+/*   Updated: 2019/06/28 15:34:04 by abbesbes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef FI_GUI_H
 # define FI_GUI_H
@@ -33,7 +44,7 @@ typedef struct	s_fimlx
 	int			sx;
 	int			sy;
 	int			so;
-	int 		sc1;
+	int			sc1;
 	int			sc2;
 }				t_fimlx;
 
@@ -41,10 +52,10 @@ int				fi_gui_init(t_fimlx *fimlx);
 void			fi_gui_sighand(int sig);
 
 int				fi_gui_loop_hook(t_fimlx *fimlx);
-int 			fi_gui_key_hook(int key, t_fimlx *fimlx);
+int				fi_gui_key_hook(int key, t_fimlx *fimlx);
 
 int				fi_gui_drawback(t_fimlx *fimlx);
 int				fi_gui_putsquare(t_fimlx *fimlx, int i, int j);
-int 			fi_gui_putrect(t_fimlx *fimlx, t_cell meta, int color);
+int				fi_gui_putrect(t_fimlx *fimlx, t_cell meta, int color);
 
 #endif

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fi_map.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abbesbes <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/28 15:23:23 by abbesbes          #+#    #+#             */
+/*   Updated: 2019/06/28 15:23:24 by abbesbes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 #include "filler.h"
@@ -5,15 +16,11 @@
 int		fi_map_update(t_game *game)
 {
 	FT_LOG_FUNC;
-	//ut_log_mtx_ch(game->map, game->mnl, game->mnc);
 	if (fi_map_numerize(game) == KO)
 		return (KO);
-	//ut_log_mtx_int(game->map, game->mnl, game->mnc);
 	fi_map_surround(game);
-	//ut_log_mtx_int(game->map, game->mnl, game->mnc);
 	if (!game->ensurrounded)
 		fi_map_calcdist(game);
-	//ut_log_mtx_int(game->map, game->mnl, game->mnc);
 	return (OK);
 }
 
