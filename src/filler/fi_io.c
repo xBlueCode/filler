@@ -22,7 +22,11 @@ int		fi_read_player(t_game *game)
 		FT_ERR_RETMSG(KO, "ERROR: GNL !");
 	game->me.id = ft_atoi(line + FI_IN_PL_OFF_I);
 	if (game->me.id != 1 && game->me.id != 2)
-		FT_ERR_RETMSG(KO, C_RED"ERROR : PARSER : Invalid PLAYER ID"T_END);
+	{
+		ft_printf(C_RED"ERROR : PARSER : INVALID PLAYER ID\n"T_END);
+		FT_MEMDEL(line);
+		return (KO);
+	}
 	game->me = game->me.id == 1 ? (t_player){.id = 1, .ch = FI_CE_PL1}
 	: (t_player){.id = 2, .ch = FI_CE_PL2};
 	game->en = game->me.id == 1 ?
@@ -42,7 +46,10 @@ int		fi_read_map(t_game *game)
 	if (get_next_line(0, &line) < 0 || !line)
 		return (-2);
 	if (ft_strncmp(line, "Plateau ", 8))
+	{
+		FT_MEMDEL(line);
 		return (KO);
+	}
 	game->mnl = ft_atoi(line + 8);
 	game->mnc = ft_atoi(ft_strchr(line + 8, ' '));
 	FT_MEMDEL(line);
@@ -62,7 +69,11 @@ int		fi_read_piece(t_game *game)
 	if (get_next_line(0, &line) < 0)
 		return (KO);
 	if (ft_strncmp(line, "Piece ", 6))
-		FT_ERR_RETMSG(KO, "Error : Parser : Expected Token : Piece !");
+	{
+		ft_printf(C_RED"ERROR : PARSER : Expected Token Piece\n"T_END);
+		FT_MEMDEL(line);
+		return (KO);
+	}
 	game->pnl = ft_atoi(line + 6);
 	game->pnc = ft_atoi(ft_strchr(line + 6, ' '));
 	FT_MEMDEL(line);
